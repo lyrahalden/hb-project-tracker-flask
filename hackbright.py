@@ -46,7 +46,7 @@ def make_new_student(first_name, last_name, github):
     """
 
     QUERY = """
-        INSERT INTO Students
+        INSERT INTO Students (first_name, last_name, github)
           VALUES (:first_name, :last_name, :github)
         """
 
@@ -55,8 +55,7 @@ def make_new_student(first_name, last_name, github):
                                'github': github})
     db.session.commit()
 
-    print "Successfully added student: {first} {last}".format(
-        first=first_name, last=last_name)
+    pass
 
 
 def get_project_by_title(title):
@@ -156,6 +155,24 @@ def get_grades_by_title(title):
 
     return rows
 
+
+def get_students_and_projects():
+    QUERY = """
+        SELECT github
+        FROM Students
+        """
+
+    db_cursor = db.session.execute(QUERY)
+
+    students = db_cursor.fetchall()
+
+    QUERY = """
+        SELECT title
+        FROM projects
+        """
+    db_cursor = db.session.execute(QUERY)
+    projects = db_cursor.fetchall()
+    return students, projects
 
 def handle_input():
     """Main loop.

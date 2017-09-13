@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <title>Homepage</title>
+</head>
+
+<body>
+<h1>List of students</h1>
+<ul>
+{%for student in students%}
+<li> <a href="/student?github={{student[0]}}">{{student[0]}} </a> </li>
+{%endfor%}
+</ul>
+
+<h1>List of projects</h1>
+<ul>
+{%for project in projects%}
+<li> <a href="/project?title={{project[0]}}">{{project[0]}} </a> </li>
+{%endfor%}
+</ul>
+Add a new student
+  <form action="/add-confirmation" method="POST">
+      <label>Enter First Name
+          <input type="text" name="fname">
+      </label>
+      <br>
+      <label>Enter Last Name
+          <input type="text" name="lname">
+      </label>
+      <br>
+      <label>Enter GitHub username
+          <input type="text" name="github">
+      </label>
+      <br>
+      <input type="submit" >
+  </form>
+</body>
+</html>

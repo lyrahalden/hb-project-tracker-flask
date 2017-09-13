@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <title>Project</title>
+</head>
+<body>
+    {% if project %}
+    Project: {{project[0]}}
+    <br>
+    Description: {{project[1]}}
+    <br>
+    Maximum Grade: {{project[2]}}
+    <br>
+    <br>
+
+    {% if students %}
+
+    <ul>
+    {%for student, grade in students%}
+
+    <li><a href="/student?github={{student}}"> {{student}}</a> received {{grade}}</li>
+
+    {%endfor%}
+    </ul>
+    {%endif%}
+
+    {%endif%}
+  <form action="/project">
+      <label>Enter Project Title
+          <input type="text" name="title">
+      </label>
+      <br>
+      <input type="submit" >
+  </form>
+
+</body>
+</html>
