@@ -18,18 +18,37 @@
 <li> <a href="/project?title={{project[0]}}">{{project[0]}} </a> </li>
 {%endfor%}
 </ul>
+<br>
+<br>
 Add a new student
   <form action="/add-confirmation" method="POST">
       <label>Enter First Name
-          <input type="text" name="fname">
+          <input type="text" name="fname" required>
       </label>
       <br>
       <label>Enter Last Name
-          <input type="text" name="lname">
+          <input type="text" name="lname" required>
       </label>
       <br>
       <label>Enter GitHub username
-          <input type="text" name="github">
+          <input type="text" name="github" required>
+      </label>
+      <br>
+      <input type="submit" >
+  </form>
+<br><br><br>
+Add a new project
+  <form action="/add-project-confirmation" method="POST">
+      <label>Enter Title
+          <input type="text" name="title" required>
+      </label>
+      <br>
+      <label>Enter Description
+          <input type="textarea" name="description" required>
+      </label>
+      <br>
+      <label>Enter maximum possible grade
+          <input type="number" name="max_grade" required>
       </label>
       <br>
       <input type="submit" >
