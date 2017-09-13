@@ -1,0 +1,12 @@
+body{
+
+    background-image: url("https://ak7.picdn.net/shutterstock/videos/1213507/thumb/1.jpg?i10c=img.resize(height:72)");
+    background-size: 20%;
+}
+
+div{
+    background-color: #d0def4;
+    border-radius: 20px;
+    border: solid #4302f4 4px;
+    width: 50%;
+}

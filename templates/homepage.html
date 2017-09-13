@@ -1,25 +1,28 @@
-<!doctype html>
-<html>
-<head>
-    <title>Homepage</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+
+{%block title%} Homepage {%endblock%}
+
+{%block bodycontent%}
+<div>
 <h1>List of students</h1>
 <ul>
 {%for student in students%}
-<li> <a href="/student?github={{student[0]}}">{{student[0]}} </a> </li>
+<li> <a href="/student?github={{student}}">{{student}} </a> </li>
 {%endfor%}
 </ul>
-
+</div>
+<div>
 <h1>List of projects</h1>
 <ul>
 {%for project in projects%}
-<li> <a href="/project?title={{project[0]}}">{{project[0]}} </a> </li>
+<li> <a href="/project?title={{project}}">{{project}} </a> </li>
 {%endfor%}
 </ul>
+</div>
 <br>
 <br>
+<div>
 Add a new student
   <form action="/add-confirmation" method="POST">
       <label>Enter First Name
@@ -36,7 +39,9 @@ Add a new student
       <br>
       <input type="submit" >
   </form>
+</div>
 <br><br><br>
+<div>
 Add a new project
   <form action="/add-project-confirmation" method="POST">
       <label>Enter Title
@@ -53,5 +58,9 @@ Add a new project
       <br>
       <input type="submit" >
   </form>
-</body>
-</html>
+</div>
+  <br><br>
+<div>
+  <a href="/assign-grades"> Assign grades </a>
+</div>
+{%endblock%}

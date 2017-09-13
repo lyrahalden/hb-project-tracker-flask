@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{%block title%} Assign Grades {%endblock%}
+
+{%block bodycontent%}
+
+<form action="/assign-grade-database" method="POST">
+    Student
+  <select name="student" >
+    {%for student in students%}
+  <option value="{{student}}">{{student}}</option>
+    {%endfor%}
+</select> <br>
+Project
+<select name="project" >
+    {%for project in projects%}
+  <option value="{{project}}">{{project}}</option>
+    {%endfor%}
+</select> <br>
+<label> Grade:
+<input type="number" name="grade" required>
+</label>
+<br>
+<input type="submit" value="Assign">
+
+</form>
+
+{%endblock%}

@@ -1,9 +1,9 @@
-<!doctype html>
-<html>
-<head>
-    <title>Project</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+
+{%block title%} Display Projects {%endblock%}
+
+{%block bodycontent%}
     {% if project %}
     Project: {{project[0]}}
     <br>
@@ -33,5 +33,4 @@
       <input type="submit" >
   </form>
 
-</body>
-</html>
+{%endblock%}

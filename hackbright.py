@@ -107,8 +107,6 @@ def get_grade_by_github_title(github, title):
 
     row = db_cursor.fetchone()
 
-    print "Student {acct} in project {title} received grade of {grade}".format(
-        acct=github, title=title, grade=row[0])
 
     return row
 
@@ -116,19 +114,24 @@ def get_grade_by_github_title(github, title):
 def assign_grade(github, title, grade):
     """Assign a student a grade on an assignment and print a confirmation."""
 
-    QUERY = """
-        INSERT INTO Grades (student_github, project_title, grade)
-          VALUES (:github, :title, :grade)
+    if get_grade_by_github_title(github, title):
+        QUERY = """
+        UPDATE grades SET student_github = :github, project_title = :title,
+        grade = :grade
+        WHERE student_github = :github AND project_title = :title
         """
+    else:
+        QUERY = """
+            INSERT INTO Grades (student_github, project_title, grade)
+              VALUES (:github, :title, :grade)
+            """
 
-    db_cursor = db.session.execute(QUERY, {'github': github,
-                                           'title': title,
-                                           'grade': grade})
+    db.session.execute(QUERY, {'github': github,
+                               'title': title,
+                               'grade': grade})
 
     db.session.commit()
 
-    print "Successfully assigned grade of {grade} for {acct} in {title}".format(
-        grade=grade, acct=github, title=title)
 
 
 def get_grades_by_github(github):
@@ -180,6 +183,7 @@ def get_students_and_projects():
     db_cursor = db.session.execute(QUERY)
 
     students = db_cursor.fetchall()
+    students1 = [student[0] for student in students]
 
     QUERY = """
         SELECT title
@@ -187,7 +191,9 @@ def get_students_and_projects():
         """
     db_cursor = db.session.execute(QUERY)
     projects = db_cursor.fetchall()
-    return students, projects
+    projects1 = [project[0] for project in projects]
+    return students1, projects1
+
 
 def handle_input():
     """Main loop.

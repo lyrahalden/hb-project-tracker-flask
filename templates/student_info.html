@@ -1,9 +1,10 @@
-<!doctype html>
-<html>
-<head>
-    <title>Student Info</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+
+{%block title%} Student Info {%endblock%}
+
+{%block bodycontent%}
+
  {% if github%}
   <h1>{{ first }} {{ last }}</h1>
 
@@ -20,5 +21,5 @@
       </label>
       <input type="submit" value="Display Student">
   </form>
-</body>
-</html>
+
+{%endblock%}

@@ -1,10 +1,11 @@
-<!doctype html>
-<html>
-<head>
-    <title>Student Info</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+
+{%block title%} Student added confirmation {%endblock%}
+
+{%block bodycontent%}
+
     <h1> Student added. Info shown here:</h1>
     <a href='/student?github={{ github }}'>Link</a>
-</body>
-</html>
+
+{%endblock%}
